@@ -109,19 +109,12 @@ public void customize()  // user-defined initialization code
 
 /* function to generate random maze */
 
-public void digout(int y, int x)    // override for lab 3 (maze generation)
+public void digout(int y, int x)    // override for maze generation
  {
      // generates maze
  } // digout
 
-
-    /* Write a routine to solve the maze.
-       Start at coordinates x=1, y=1, and stop at coordinates
-       x=mw-1, y=mh-2.  This coordinate was especially dug out
-       after the program called your digout function (in the "actionPerformed"
-       method).
-    */
-    public void solve()    // override for lab 4 part 1
+    public void solve()    // override for maze solver
   {
       int x=1, y=1;
       //      drawdot(y,x);
@@ -130,25 +123,22 @@ public void digout(int y, int x)    // override for lab 3 (maze generation)
       // is, when the dot reaches y==mh-2, x==mw-2
   } // solve
 
-  public void trace()     // override for lab 4 part 2, lab 5
+  public void trace()     // override for tracing path
   {  // draw a dot (without erasing it) along the OPTIMAL path
   }
 
     ///////////////////////////////////////////////////////////////
-    /// For part three (save a copy of part 2 version first!), you
     // need to implement the KeyListener interface.
 
-    public void play() // override for lab 5
+    public void play() // override for later gameplay
     {
 	// code to setup game
     }
-    // for this part you may also define some other instance vars outside of
-    // the play function.
 
    // skeleton implementation of KeyListener interface
    public void keyReleased(KeyEvent e) {}
    public void keyTyped(KeyEvent e) {}
-   public void keyPressed(KeyEvent e) // change this one
+   public void keyPressed(KeyEvent e)
     {
 	int key = e.getKeyCode();       // code for key pressed      
 	System.out.println("YOU JUST PRESSED KEY "+key);
