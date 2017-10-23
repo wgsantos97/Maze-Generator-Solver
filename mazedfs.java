@@ -62,9 +62,9 @@ public void setup()
 	     M[mh-1][mw-2] = M[mh-2][mw-1] = 1;
 	     drawblock(mh-2,mw-1);
 	 }
-     solve();  // this is the function you will write for lab 3, part 1
-     trace();  // for part 2
-     play();   // for part 3
+     solve();  
+     trace();  
+     play();   
    }   
 
     public static void main(String[] args)
