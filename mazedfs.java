@@ -2,6 +2,12 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.Graphics;
 import javax.swing.*;
+//Fun Mods
+import java.io.*;
+import sun.audio.*;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.embed.swing.JFXPanel;
 
 public class mazedfs extends JFrame implements KeyListener
 {
@@ -33,6 +39,7 @@ protected Color dotcolor = Color.red;
 // args determine block size, maze height, and maze width
 public mazedfs(int bh0, int mh0, int mw0)
  { 
+   
    bh = bw = bh0;  mh = mh0;  mw = mw0;
    ah = bh*mh;
    aw = bw*mw;
@@ -62,10 +69,12 @@ public void setup()
 	     M[mh-1][mw-2] = M[mh-2][mw-1] = 1;
 	     drawblock(mh-2,mw-1);
 	 }
-     solve();  
-     trace();  
-     play();   
-   }   
+
+
+     solve();  // this is the function you will write for lab 3, part 1
+     trace();  // for part 2
+     play();   // for part 3
+	}   
 
     public static void main(String[] args)
     {
@@ -76,7 +85,14 @@ public void setup()
 	       mwidth=Integer.parseInt(args[1]);
 	       blocksize=Integer.parseInt(args[2]);
 	   }
-       mazedfs W = new maze(blocksize,mheight,mwidth);
+	// MODS
+	final JFXPanel fxPanel = new JFXPanel();
+	String bip = "Celica.mp3";
+	Media hit = new Media(new File(bip).toURI().toString());
+	MediaPlayer mediaPlayer = new MediaPlayer(hit);
+	mediaPlayer.play();
+       //MODS END
+	mazedfs W = new maze(blocksize,mheight,mwidth);
     }
 
 public void delay(int ms)
@@ -109,12 +125,19 @@ public void customize()  // user-defined initialization code
 
 /* function to generate random maze */
 
-public void digout(int y, int x)    // override for maze generation
+public void digout(int y, int x)    // override for lab 3 (maze generation)
  {
      // generates maze
  } // digout
 
-    public void solve()    // override for maze solver
+
+    /* Write a routine to solve the maze.
+       Start at coordinates x=1, y=1, and stop at coordinates
+       x=mw-1, y=mh-2.  This coordinate was especially dug out
+       after the program called your digout function (in the "actionPerformed"
+       method).
+    */
+    public void solve()    // override for lab 4 part 1
   {
       int x=1, y=1;
       //      drawdot(y,x);
@@ -123,22 +146,25 @@ public void digout(int y, int x)    // override for maze generation
       // is, when the dot reaches y==mh-2, x==mw-2
   } // solve
 
-  public void trace()     // override for tracing path
+  public void trace()     // override for lab 4 part 2, lab 5
   {  // draw a dot (without erasing it) along the OPTIMAL path
   }
 
     ///////////////////////////////////////////////////////////////
+    /// For part three (save a copy of part 2 version first!), you
     // need to implement the KeyListener interface.
 
-    public void play() // override for later gameplay
+    public void play() // override for lab 5
     {
 	// code to setup game
     }
+    // for this part you may also define some other instance vars outside of
+    // the play function.
 
    // skeleton implementation of KeyListener interface
    public void keyReleased(KeyEvent e) {}
    public void keyTyped(KeyEvent e) {}
-   public void keyPressed(KeyEvent e)
+   public void keyPressed(KeyEvent e) // change this one
     {
 	int key = e.getKeyCode();       // code for key pressed      
 	System.out.println("YOU JUST PRESSED KEY "+key);
